@@ -152,7 +152,8 @@ ini_set('display_startup_errors', 1);
 
     </table>
 
-    <a href="menu_type.php" class="bth-back">ไปหน้าเมนู type</a>
+    
+      <a href="index.php" class="bth-back">ไปหน้าเมนู index</a>
 
 </body>
 </html>
