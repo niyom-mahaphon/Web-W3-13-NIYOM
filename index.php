@@ -221,6 +221,63 @@
         .bth-back:active {
             transform: translateY(0);
         }
+
+        /* ==================== สไตล์สำหรับ Footer ==================== */
+        .site-footer {
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 50px;
+            padding: 25px 20px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(100, 80, 60, 0.05);
+            border: 1px solid #f0eae1;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #f0eae1;
+        }
+
+        .footer-info h4 {
+            font-size: 16px;
+            color: #2d3436;
+            font-weight: 600;
+        }
+
+        .footer-info p {
+            font-size: 13px;
+            color: #887766;
+            margin-top: 2px;
+        }
+
+        .footer-contact {
+            font-size: 13px;
+            color: #636e72;
+            text-align: right;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #b2bec3;
+        }
+
+        @media (max-width: 600px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-contact {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -300,6 +357,23 @@ ini_set('display_startup_errors', 1);
     </div>
 
     <a href="manage_menu.php" class="bth-back">← กลับหน้าจัดการเมนู</a>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h4>🍽️ ร้านอาหารของคุณ</h4>
+                <p>คัดสรรวัตถุดิบคุณภาพ เพื่อรสชาติที่ดีที่สุด</p>
+            </div>
+            <div class="footer-contact">
+                <p>📍 เปิดให้บริการทุกวัน: 10:00 - 21:00 น.</p>
+                <p>📞 ติดต่อสอบถาม: 08X-XXX-XXXX</p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; <?= date("Y") ?> Menu Showcase. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

@@ -10,6 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+    :root {
+        --bg-color: #f8f4ef;
+        --card-bg: #ffffff;
+        --text-dark: #2b2118;
+        --text-muted: #8c7a6b;
+        --accent-primary: #e05638;
+        --accent-hover: #c0392b;
+        --border-color: #ede6dd;
+        --dark-espresso: #211915;
+    }
+
     * {
         box-sizing: border-box;
         margin: 0;
@@ -18,12 +29,12 @@
     }
 
     body {
-        background: #0f172a; /* พื้นหลังสี Dark Slate */
-        background-image: radial-gradient(rgba(217, 119, 6, 0.12) 1px, transparent 1px);
-        background-size: 28px 28px;
-        color: #f8fafc;
+        background-color: var(--bg-color);
+        background-image: radial-gradient(#e2d7c9 1px, transparent 1px);
+        background-size: 24px 24px;
+        color: var(--text-dark);
         min-height: 100vh;
-        padding: 40px 20px;
+        padding: 50px 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -32,12 +43,11 @@
     /* หัวข้อส่วนการจัดการ */
     body::before {
         content: "⚙️ ระบบจัดการเมนูอาหาร";
-        font-size: 28px;
+        font-size: 32px;
         font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 20px;
+        color: var(--text-dark);
+        margin-bottom: 24px;
         letter-spacing: -0.5px;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
     /* ตกแต่งปุ่ม "เพิ่มเมนู" */
@@ -46,14 +56,14 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+        background: linear-gradient(135deg, #e05638 0%, #c0392b 100%);
         color: #ffffff;
         text-decoration: none;
-        padding: 12px 26px;
-        border-radius: 12px;
+        padding: 14px 28px;
+        border-radius: 14px;
         font-weight: 600;
         font-size: 15px;
-        box-shadow: 0 6px 20px rgba(217, 119, 6, 0.35);
+        box-shadow: 0 8px 20px rgba(224, 86, 56, 0.25);
         transition: all 0.3s ease;
         margin-bottom: 24px;
         width: 100%;
@@ -67,8 +77,8 @@
 
     body > a[href="add_menu.php"]:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(217, 119, 6, 0.5);
-        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        box-shadow: 0 12px 25px rgba(224, 86, 56, 0.4);
+        background: linear-gradient(135deg, #f06548 0%, #e05638 100%);
     }
 
     /* ตกแต่งตารางข้อมูล */
@@ -77,21 +87,21 @@
         max-width: 1100px;
         border-collapse: separate;
         border-spacing: 0;
-        background: #1e293b;
-        border-radius: 16px;
+        background: var(--card-bg);
+        border-radius: 18px;
         overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 0 10px 30px rgba(43, 33, 24, 0.06);
+        border: 1px solid var(--border-color) !important;
     }
 
     thead th {
-        background: #0f172a;
-        color: #f59e0b; /* โทนสีทอง */
+        background: var(--dark-espresso);
+        color: #ffffff;
         font-size: 15px;
         font-weight: 600;
         padding: 18px 16px;
         text-align: center;
-        border-bottom: 2px solid rgba(245, 158, 11, 0.2) !important;
+        border-bottom: 3px solid var(--accent-primary) !important;
         letter-spacing: 0.5px;
     }
 
@@ -100,15 +110,15 @@
     }
 
     tbody tr:hover {
-        background-color: rgba(245, 158, 11, 0.05);
+        background-color: #fcf9f5;
     }
 
     td {
         padding: 16px;
         text-align: center;
         vertical-align: middle;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-        color: #cbd5e1;
+        border-bottom: 1px solid var(--border-color) !important;
+        color: var(--text-dark);
         font-size: 14px;
     }
 
@@ -118,31 +128,31 @@
 
     /* สไตล์ราคา */
     td:nth-child(3) {
-        font-weight: 600;
-        color: #10b981;
-        font-size: 16px;
+        font-weight: 700;
+        color: var(--accent-primary);
+        font-size: 17px;
     }
 
     td:nth-child(3)::before {
         content: "฿ ";
-        font-size: 13px;
-        color: #94a3b8;
+        font-size: 14px;
+        color: var(--text-muted);
     }
 
     /* สไตล์รูปภาพ */
     img {
-        width: 140px !important;
-        height: 90px !important;
+        width: 130px !important;
+        height: 85px !important;
         object-fit: cover;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(43, 33, 24, 0.08);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--border-color);
     }
 
     img:hover {
-        transform: scale(1.08);
-        box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+        transform: scale(1.06);
+        box-shadow: 0 8px 20px rgba(224, 86, 56, 0.2);
     }
 
     /* สไตล์ปุ่มในช่องจัดการ */
@@ -154,7 +164,7 @@
         display: inline-flex;
         align-items: center;
         text-decoration: none;
-        padding: 8px 18px;
+        padding: 8px 16px;
         border-radius: 8px;
         font-size: 13px;
         font-weight: 500;
@@ -164,31 +174,117 @@
 
     /* ปุ่มแก้ไข */
     td:last-child a[href*="edit_menu"] {
-        background: rgba(59, 130, 246, 0.15);
-        color: #60a5fa;
-        border: 1px solid rgba(59, 130, 246, 0.3);
+        background: rgba(37, 99, 235, 0.1);
+        color: #2563eb;
+        border: 1px solid rgba(37, 99, 235, 0.2);
     }
 
     td:last-child a[href*="edit_menu"]:hover {
-        background: #3b82f6;
+        background: #2563eb;
         color: #ffffff;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         transform: translateY(-2px);
     }
 
     /* ปุ่มลบ */
     td:last-child a[href*="delete_menu"] {
-        background: rgba(239, 68, 68, 0.15);
-        color: #f87171;
-        border: 1px solid rgba(239, 68, 68, 0.3);
+        background: rgba(220, 38, 38, 0.1);
+        color: #dc2626;
+        border: 1px solid rgba(220, 38, 38, 0.2);
     }
 
     td:last-child a[href*="delete_menu"]:hover {
-        background: #ef4444;
+        background: #dc2626;
         color: #ffffff;
-        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
         transform: translateY(-2px);
     }
+
+    /* ตกแต่งปุ่มย้อนกลับ (bth-back) */
+    .bth-back {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 35px;
+        padding: 14px 36px;
+        background: var(--dark-espresso);
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 50px;
+        box-shadow: 0 8px 20px rgba(33, 25, 21, 0.15);
+        transition: all 0.3s ease;
+    }
+
+    .bth-back:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 25px rgba(224, 86, 56, 0.25);
+        color: #ffffff;
+        background: var(--accent-primary);
+    }
+
+    .bth-back:active {
+        transform: translateY(0);
+    }
+
+    /* ==================== สไตล์สำหรับ Footer ==================== */
+        .site-footer {
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 50px;
+            padding: 25px 20px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(100, 80, 60, 0.05);
+            border: 1px solid #f0eae1;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #f0eae1;
+        }
+
+        .footer-info h4 {
+            font-size: 16px;
+            color: #2d3436;
+            font-weight: 600;
+        }
+
+        .footer-info p {
+            font-size: 13px;
+            color: #887766;
+            margin-top: 2px;
+        }
+
+        .footer-contact {
+            font-size: 13px;
+            color: #636e72;
+            text-align: right;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #b2bec3;
+        }
+
+        @media (max-width: 600px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-contact {
+                text-align: center;
+            }
+        }
+    </style>
 </style>
 </head>
 <body>
@@ -251,6 +347,24 @@ style="width:200px"
 </table>
 
      <a href="index.php" class="bth-back">← กลับหน้าเมนู</a>
+
+
+     <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h4>🍽️ ร้านอาหารของคุณ</h4>
+                <p>คัดสรรวัตถุดิบคุณภาพ เพื่อรสชาติที่ดีที่สุด</p>
+            </div>
+            <div class="footer-contact">
+                <p>📍 เปิดให้บริการทุกวัน: 10:00 - 21:00 น.</p>
+                <p>📞 ติดต่อสอบถาม: 08X-XXX-XXXX</p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; <?= date("Y") ?> Menu Showcase. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
