@@ -23,16 +23,93 @@
             background-size: 20px 20px;
             color: #2d3436;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding-bottom: 40px;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             flex-direction: column;
         }
 
+        /* ==================== สไตล์ Navbar ==================== */
+        .navbar {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #f0eae1;
+            box-shadow: 0 4px 15px rgba(100, 80, 60, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 35px;
+        }
+
+        .navbar-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2d3436;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand span {
+            color: #d63031;
+        }
+
+        .navbar-links {
+            display: flex;
+            list-style: none;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #636e72;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #d63031;
+            background: #fff5f5;
+        }
+
+        .navbar-links a.active {
+            color: #ffffff;
+            background: #d63031;
+            box-shadow: 0 4px 12px rgba(214, 48, 49, 0.25);
+        }
+
+        @media (max-width: 600px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .navbar-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 6px;
+            }
+        }
+        /* ==================================================== */
+
         .header-title {
             text-align: center;
             margin-bottom: 35px;
+            padding: 0 20px;
         }
 
         .header-title h2 {
@@ -52,6 +129,7 @@
         .table-container {
             width: 100%;
             max-width: 1100px;
+            padding: 0 20px;
             background: transparent;
             box-shadow: none;
             border-radius: 0;
@@ -224,7 +302,7 @@
 
         /* ==================== สไตล์สำหรับ Footer ==================== */
         .site-footer {
-            width: 100%;
+            width: calc(100% - 40px);
             max-width: 1100px;
             margin-top: 50px;
             padding: 25px 20px;
@@ -282,6 +360,22 @@
 </head>
 <body>
 
+    <!-- ================= Navbar Section ================= -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.php" class="navbar-brand">
+                🍽️ <span>Menu</span>Showcase
+            </a>
+            <ul class="navbar-links">
+                <li><a href="index.php">หน้าแรก</a></li>
+                <li><a href="show_menu.php" class="active">รายการเมนู</a></li>
+                <li><a href="manage_menu.php">จัดการเมนู</a></li>
+                <li><a href="#footer">ติดต่อเรา</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- =================================================== -->
+
     <div class="header-title">
         <h2>✨ Menu Showcase</h2>
         <p>รายการเมนูอาหารแสนอร่อยที่พร้อมให้บริการ</p>
@@ -289,22 +383,16 @@
     
     <?php
     // แสดง error
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
 
-// Report all PHP errors
-error_reporting(E_ALL);
+    include "action/connect.php";
 
-// Force errors to be displayed on the screen
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
-        include "action/connect.php";
-
-        //       ดึง   ทัั้งหมด จาก  ตาราง  menus
-        $sql = "SELECT * FROM menus";
-        //                      ที่อยู่ฐาน , คิวรี่
-         $result = mysqli_query($con , $sql);
-         // ทดสอบ
-         // var_dump($result); 
+    // ดึงทั้งหมด จาก ตาราง menus
+    $sql = "SELECT * FROM menus";
+    //ประมวณผล
+    $result = mysqli_query($con , $sql);
     ?>
 
     <div class="table-container">
@@ -318,48 +406,32 @@ ini_set('display_startup_errors', 1);
                 <th>ประเภท</th>
             </thead>
 
-
-            <!--  แสดงผลข้อมูลในตารางแบบอัตโนมัติ -->
+            <!-- แสดงผลข้อมูลในตารางแบบอัตโนมัติ -->
             <?php
-
-            // คำสั่งสั่งให้ระบบทำงานซ้ำๆ
+                 // วนลูป
                 foreach($result as $menu){
                     ?>
-
-                             <!-- สร้างแถวและช่องสำหรับใส่ข้อมูล -->
+                    <!-- สร้างแถวและช่องสำหรับใส่ข้อมูล -->
                     <tr>
                         <td><?= $menu["menu_id"] ?></td>
                         <td><?= $menu["menu_name"] ?></td>
                         <td><?= $menu["menu_price"] ?></td>
                         <td>
-
-            
-
                             <!-- ดึงรูปภาพของเมนูมาแสดงผล -->
-                            <img
-                            
-                             src="<?= $menu["menu_image"] ?>" 
-                             alt=""
-                             style="width:200px"
-                             
-                            >
+                            <img src="<?= $menu["menu_image"] ?>" alt="" style="width:200px">
                         </td>
                         <td><?= $menu["menu_id"] ?></td>
                     </tr>
-                    
                     <?php
                 }
             ?>
-
-
-
         </table>
     </div>
 
     <a href="manage_menu.php" class="bth-back">← กลับหน้าจัดการเมนู</a>
 
     <!-- Footer Section -->
-    <footer class="site-footer">
+    <footer class="site-footer" id="footer">
         <div class="footer-content">
             <div class="footer-info">
                 <h4>🍽️ ร้านอาหารของคุณ</h4>
